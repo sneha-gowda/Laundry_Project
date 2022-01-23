@@ -28,8 +28,8 @@ app.get('/',(req,res)=>{
 
 // ---------------------------------------Logins --------------------------------
 
-app.post("/api/login",async(req, res)=>{
-    userDetails = req.body.user;
+app.post("/login",async(req, res)=>{
+    userDetails = req.body;
     userID=userDetails.userID;
     reqPassword=userDetails.password;
     let query={}
@@ -94,7 +94,7 @@ const authenticateToken = (req, res, next) => {
         return res.status(403).send("Not authorized")
     }
     else {
-        jwt.verify(token, Access_Token_Secret, (err, userDet) => {
+        jwt.verify(token, Access_Token_Secret, (err, userDetails) => {
             if (err) {
                 return res.status(403).send("Expired Token")
             }
@@ -113,7 +113,7 @@ const authenticateToken = (req, res, next) => {
 
 // --------------------------GET request--------------------------------------------
 
-app.get("/create", authenticateToken,async (req,res)=>{
+app.get("/products", authenticateToken,async (req,res)=>{
     product.find().then(result =>{
         res.status(200).json({
             product: result
@@ -125,23 +125,22 @@ app.get("/create", authenticateToken,async (req,res)=>{
 })
 
 // --------------------------POST request to save order ------------------------------
-app.post("order", authenticateToken ,async(req,res)=>{
+app.post("/order", authenticateToken ,async(req,res)=>{
     const date = new Date();
-    const orderDetails=req.body.orderDetails;
+    const orderDetails=req.body;
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June","July", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const orderDate=`${date.getDate()} ${monthNames[date.getUTCMonth()]} ${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}`
+    // console.log("hiihihihi")
     orderdoc={
         "userId": req.user.userID,
         "Order Date and Time":orderDate,
-        // "Store Location":"JP nagar",
-        // "City": "Banglore",
-        // "Store Phone":9876543211,
         "Total Items":orderDetails.totalItems,
         "Price":orderDetails.price,
         "Status": "washing",
-        "Ordered Items":orderDetails.itemDetails,
+        "Ordered Items": orderDetails.OrderedItems,
     }
-    document=new order(orderDoc);
+    // console.log("hii")
+    document=new order(orderdoc);
     document.save().then(result=>{
         res.status(200).send(result)
     }).catch(err=>{
@@ -152,10 +151,14 @@ app.post("order", authenticateToken ,async(req,res)=>{
 
 // ------------------------------DELETE ORDER------------------------------------
 app.delete("/cancel", authenticateToken ,async(req, res)=>{
-    orderID=req.body.orderID;
-    order.findOneandDelete({_id:orderID}).then(result=>{
+   
+    orderID = req.body.order_id;
+   
+    order.findOneAndDelete({_id:orderID}).then(result=>{
+        // console.log("noooo")
         res.status(200).send(result)
     }).catch(err=>{
+        // console.log("yooo")
         res.status(400).send(err)
     })
 })

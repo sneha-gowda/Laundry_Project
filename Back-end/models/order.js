@@ -15,18 +15,6 @@ const orderSchema =  new mongoose.Schema({
      "Order Date and Time": {
         type : String
      },
-    // "Store Location": {
-    //     type : String,
-    //     default : "Jp Nagar"
-    // },
-    // "Store Address": {
-    //     type : String,
-    //     default : "Near Phone booth , 10th road."
-    // },
-    // "Phone": {
-    //     type : Number,
-    //     default : 9999999999
-    // },
     "Total Items" :{
 
     },
@@ -38,8 +26,7 @@ const orderSchema =  new mongoose.Schema({
     "Ordered Items": [
         {
             "product" :{ 
-                "type": mongoose.Schema.Types.ObjectId,
-                "ref": "product"
+                "type": String
              },
             "quantity" :{
                 type : Number
@@ -52,11 +39,7 @@ const orderSchema =  new mongoose.Schema({
             }
         }
     ]
-    
-    // // ,
-    // "total": {
-    //     type : Number
-    // }
+
 });
 
 const Orders =  mongoose.model('Orders', orderSchema);
