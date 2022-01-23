@@ -41,9 +41,13 @@ app.post("/api/login",async(req, res)=>{
             if (outputofCompare) {
                 const user = { userID: result._id }
                 const token = jwt.sign(user, Access_Token_Secret)
-                res.status(200).json({
-                    token: token,
-                    message: "Succesful"
+                userOrders=order.find({userId: result._id}).then(result => {
+                    res.status(200).json({
+                        token: token,
+                        orders: result
+                    })
+                }).catch(err => {
+                    res.status(400).send(err)
                 })
             }
             else {
@@ -73,3 +77,78 @@ app.post('/register',async(req,res)=>{
         res.status(500).send("Server error")
     }
 });
+
+
+// -----------------------------the validates the token from user----------------------
+const authenticateToken = (req, res, next) => {
+    const authHeader = req.headers["authorization"]
+    const token = authHeader && authHeader.split(" ")[1]
+    if (token == null) {
+        return res.status(403).send("Not authorized")
+    }
+    else {
+        jwt.verify(token, Access_Token_Secret, (err, userDet) => {
+            if (err) {
+                return res.status(403).send("Expired Token")
+            }
+            else {
+                user.find({ _id: userDetails.userID }).then(result => {
+                    req.user = userDetails
+                    next()
+                }).catch(err => {
+                    res.status(404).send("User not found")
+                })
+
+            }
+        })
+    }
+}
+
+// --------------------------GET request--------------------------------------------
+
+app.get("/create", authenticateToken,async (req,res)=>{
+    product.find().then(result =>{
+        res.status(200).json({
+            product: result
+        })
+    }).catch(err =>{
+        res.status(500).send(err)
+    })
+    
+})
+
+// --------------------------POST request to save order ------------------------------
+app.post("order", authenticateToken ,async(req,res)=>{
+    const date = new Date();
+    const orderDetails=req.body.orderDetails;
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June","July", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const orderDate=`${date.getDate()} ${monthNames[date.getUTCMonth()]} ${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}`
+    orderdoc={
+        "userId": req.user.userID,
+        "Order Date and Time":orderDate,
+        // "Store Location":"JP nagar",
+        // "City": "Banglore",
+        // "Store Phone":9876543211,
+        "Total Items":orderDetails.totalItems,
+        "Price":orderDetails.price,
+        "Status": "washing",
+        "Ordered Items":orderDetails.itemDetails,
+    }
+    document=new order(orderDoc);
+    document.save().then(result=>{
+        res.status(200).send(result)
+    }).catch(err=>{
+        res.status(400),send(err)
+    })
+}) 
+
+
+// ------------------------------DELETE ORDER------------------------------------
+app.delete("/cancel", authenticateToken ,async(req, res)=>{
+    orderID=req.body.orderID;
+    order.findOneandDelete({_id:orderID}).then(result=>{
+        res.status(200).send(result)
+    }).catch(err=>{
+        res.status(400).send(err)
+    })
+})
