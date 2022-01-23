@@ -4,7 +4,7 @@
     "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.7",
-    "validate": "^5.2.0"
+    "validator": "^13.7.0"
   },
   "name": "back-end",
   "description": "This folder will be having all Node Back-end code.",

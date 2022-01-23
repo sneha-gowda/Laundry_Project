@@ -2,7 +2,7 @@ const express = require("express");
 const app=new express();
 const jwt= require('jsonwebtoken');
 const bcrypt=require('bcrypt');
-require("./databaseConnection.js");
+require("./DatabaseConnection.js");
 const userModel=require("./models/user.js")
 const orderModel=require("./models/order.js")
 const productModel=require("./models/product.js")
@@ -13,14 +13,18 @@ const Access_Token_Secret = '165a6629b602ad71a1ddac31b9dd60baf241f357778ad1748a2
 app.use(express.json())
 app.use(express.urlencoded({ extended: true })); 
 
-
 // collections
-
 user = userModel.Users;
 order= orderModel.Orders;
 product=productModel.Products;
 
-// API
+app.listen(8000,()=>{
+    console.log("imlistening")
+})
+app.get('/',(req,res)=>{
+    res.send("yooooo")
+})
+//***********************API*******************API******************API**********************
 
 // ---------------------------------------Logins --------------------------------
 
@@ -64,17 +68,20 @@ app.post("/api/login",async(req, res)=>{
 
 app.post('/register',async(req,res)=>{
     try {
-        userDetails = req.body.user;
+        userDetails = req.body;
         const hashPassword = await bcrypt.hash(req.body.password, 10)
         userDetails.password = hashPassword
         doc1 = new user(userDetails)
+        console.log(userDetails)
         doc1.save().then(result => {
+            console.log("hooo")
             res.status(200).send("Registered")
         }).catch(error => {
+            console.log("noo")
             res.status(400).send(error)
         })
     } catch (err) {
-        res.status(500).send("Server error")
+        res.status(500).send(err)
     }
 });
 
