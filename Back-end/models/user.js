@@ -1,14 +1,21 @@
 const mongoose = require("mongoose");
+const validator = require("validator")
 
 const userSchema =  new mongoose.Schema({
     "name": {
         type : String,
+        required: true,
         default : "Laundry-user1"
     },
     "phone": {
-        type : Number,
+        type : String,
         unique: [true,"User with this Phone number already exist"],
-        default : "9988776655"
+        required: true,
+        validate(value) {
+            if (!validator.isMobilePhone(value) ) {
+                throw new Error("Invalid Phone")
+            }
+        }
     },
     "email": {
         type: String,
@@ -22,28 +29,32 @@ const userSchema =  new mongoose.Schema({
     },
     "password": {
         type : String,
+        required: true,
         validate(value){
-            if(true){
+            if(value.length<6){
                 throw new Error("Password should have minimum 6 characters")
             }
         },
-        default : "12345678"
     },
     "state": {
         type : String,
+        required: true,
         default : "Andhrapradesh"
     },
     "district": {
         type : String,
-        default : "Nellore"
+        required: true,
+        
     },
     "address": {
         type : String,
-        default : "RTO Office"
+        required: true,
+        
     },
     "pincode": {
         type : Number,
-        default : 524004
+        required: true,
+       
     }
 });
 
