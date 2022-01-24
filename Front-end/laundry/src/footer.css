@@ -1,0 +1,13 @@
+.Footer {
+  background-color: #182838;
+  text-align: center;
+  font: normal normal normal 12px/24px Avenir;
+  letter-spacing: 0.12px;
+  color: #ffffff;
+  opacity: 1;
+}
+p {
+  padding: 1em 0;
+  letter-spacing: 2px;
+  color: #ffffff;
+}
