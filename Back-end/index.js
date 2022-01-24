@@ -18,13 +18,12 @@ user = userModel.Users;
 order= orderModel.Orders;
 product=productModel.Products;
 
-app.listen(8000,()=>{
+app.listen(3007,()=>{
     console.log("imlistening")
 })
 app.get('/',(req,res)=>{
-    res.send("yooooo")
+    res.send("Server not connected")
 })
-//***********************API*******************API******************API**********************
 
 // ---------------------------------------Logins --------------------------------
 
@@ -153,15 +152,12 @@ app.post("/order", authenticateToken ,async(req,res)=>{
 
 
 // ------------------------------DELETE ORDER------------------------------------
-app.delete("/cancel", authenticateToken ,async(req, res)=>{
+app.put("/cancel", authenticateToken ,async(req, res)=>{
    
     orderID = req.body.order_id;
-   
-    order.findOneAndDelete({_id:orderID}).then(result=>{
-        // console.log("noooo")
-        res.status(200).send(result)
+    order.findOneAndUpdate({_id:orderID},{"Status":"Cancelled"}).then(result=>{
+        res.status(200).send("Updated")
     }).catch(err=>{
-        // console.log("yooo")
         res.status(400).send(err)
     })
 })
