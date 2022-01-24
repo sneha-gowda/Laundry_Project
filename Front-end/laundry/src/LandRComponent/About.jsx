@@ -5,11 +5,11 @@ const About = ()=>{
         <>
             <section className="About">
                 <div className="AboutUS">
-                    <h1>ABOUT US</h1>
+                    <h1>About us</h1>
                     <h3>Doorstep Wash & Dryclean Service</h3>
                 </div>
                 <div className="Home">
-                    <h1>HOME</h1>
+                    <h1>Home</h1>
                     <h3>Sign In</h3>
                     <h3>Register</h3>
                 </div>
