@@ -41,6 +41,7 @@ app.post("/login",async(req, res)=>{
     }
     user.findOne(query).then((result)=>{
         const hashPassword = result.password;
+        const userName=result.name
         bcrypt.compare(reqPassword, hashPassword).then((outputofCompare) => {
             if (outputofCompare) {
                 const user = { userID: result._id }
@@ -48,7 +49,9 @@ app.post("/login",async(req, res)=>{
                 userOrders=order.find({userId: result._id}).then(result => {
                     res.status(200).json({
                         token: token,
-                        orders: result
+                        userName: userName,
+                        orders: result,
+                        
                     })
                 }).catch(err => {
                     res.status(400).send(err)
