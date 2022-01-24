@@ -19,7 +19,7 @@ nav {
   right: 0px;
 }
 h4 {
-  font: normal normal 900 20px/27px Avenir;
+  font-family: Avenir;
   letter-spacing: 1.8px;
   color: #5861ae;
   text-transform: uppercase;
@@ -31,7 +31,7 @@ ul {
 li {
   display: inline-block;
   list-style: none;
-  padding: 20px;
+  padding: 2em;
   font: normal normal normal 14px/19px Avenir;
   letter-spacing: 1.05px;
 }
