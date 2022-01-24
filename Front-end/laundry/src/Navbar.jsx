@@ -1,12 +1,10 @@
 import React from 'react';
 import {Link} from "react-router-dom"
-import "./navbar.css"
-import { useState } from 'react';
+import "./navbar.css";
 
 const Navbar = (props) => {
     return (
-    <>
-        <header>
+        <><header>
             <h4>LAUNDRY</h4>
             <nav>
                 <ul>

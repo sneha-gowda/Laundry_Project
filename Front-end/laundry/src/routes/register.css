@@ -1,7 +1,6 @@
 .Register {
   display: flex;
   flex-wrap: wrap;
-
   flex-direction: row;
   min-height: fit-content;
   width: 100%;
@@ -57,7 +56,7 @@
   opacity: 1;
 }
 .signinButton {
-  border: 2px solid #5861ae;
+  border: 2px solid #4552c1;
   border-radius: 5%;
   padding: 6% 12%;
   background-color: white;
@@ -67,7 +66,7 @@
   font-family: Sans;
   letter-spacing: 0.3px;
   opacity: 1;
-  color: #5861ae;
+  color: #4552c1;
   text-decoration: none;
 }
 /* Form Styling */

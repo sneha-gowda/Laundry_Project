@@ -47,32 +47,39 @@ app.post("/login",async(req, res)=>{
     else{
         query={"phone":userID}
     }
+    console.log(query)
     user.findOne(query).then((result)=>{
-        const hashPassword = result.password;
-        const userName=result.name
-        bcrypt.compare(reqPassword, hashPassword).then((outputofCompare) => {
-            if (outputofCompare) {
-                const user = { userID: result._id }
-                const token = jwt.sign(user, Access_Token_Secret)
-                userOrders=order.find({userId: result._id}).then(result => {
-                    console.log("s")
-                    res.status(200).json({
-                        token: token,
-                        userName: userName,
-                        orders: result,
-                        
+        if(result==null){
+            console.log("fail")
+            res.status(400).json({message:"User not found"})
+        }
+        else{
+            const hashPassword = result.password;
+            const userName=result.name
+            bcrypt.compare(reqPassword, hashPassword).then((outputofCompare) => {
+                console.log("hi")
+                if (outputofCompare) {
+                    const user = { userID: result._id }
+                    const token = jwt.sign(user, Access_Token_Secret)
+                    userOrders=order.find({userId: result._id}).then(result => {
+                        console.log("s")
+                        res.status(200).json({
+                            token: token,
+                            userName: userName,
+                            orders: result,
+                        })
+                    }).catch(err => {
+                        console.log("f")
+                        res.status(400).send(err)
                     })
-                }).catch(err => {
-                    console.log("f")
-                    res.status(400).send(err)
-                })
-            }
-            else {
-                res.status(403).send("Invalid password")
-            }
-        }).catch((err)=>{
-            res.status(400).json({message:err})
-        })
+                }
+                else {
+                    res.status(403).send("Invalid password")
+                }
+            }).catch((err)=>{
+                res.status(400).json({message:err})
+            })
+    }
     })
 });
 
