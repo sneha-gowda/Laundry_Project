@@ -26,7 +26,6 @@ const About = ()=>{
                 </div>
                 <div className="SocialMedia">
                     <h1>SOCIAL MEDIA</h1>
-                    
                     <div className="SocialMediaIcon">
                         <img src="image/facebook.svg" alt="facebook"></img>
                         <img src="image/instagram.svg" alt="insta"></img>
