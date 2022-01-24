@@ -9,7 +9,7 @@
 
 h1 {
   margin: 0;
-  padding-top: 0.1em;
+  padding-top: 0.8em;
   font-family: Open sans;
   letter-spacing: 0.96px;
   color: #5861ae;
@@ -20,7 +20,7 @@ h1 {
 h6 {
   margin: 0;
   font: italic normal normal 10px/26px Open Sans;
-  font-size: 10px;
+  font-size: 1em;
   letter-spacing: 0.4px;
   color: #3d3d43;
   opacity: 1;

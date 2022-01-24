@@ -3,12 +3,16 @@
   padding: 0px;
 }
 header {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 0%;
   margin-left: 0px;
-  padding: 0px 8%;
+  padding: 0px;
+}
+header h4 {
+  padding-left: 4%;
 }
 nav {
   position: relative;
