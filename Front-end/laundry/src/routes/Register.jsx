@@ -1,12 +1,47 @@
-import React from 'react'
-import Refer from "../LandRComponent/Refer.jsx"
-import About from "../LandRComponent/About.jsx"
-import {Link} from "react-router-dom"
+import React from 'react';
+import Refer from "../LandRComponent/Refer.jsx";
+import About from "../LandRComponent/About.jsx";
+import {Link} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./register.css"
-const Register=()=>{
-    const handleSubmit=(event)=>{
-        console.log(this.state)
-    }
+const Register=(props)=>{
+    const navigate = useNavigate();
+    const register = async (elem) => {
+        try {
+            elem.preventDefault();
+            const response=await fetch("http://localhost:3007/register", {
+                method: "POST",
+                mode: "cors",
+                cache: "no-cache",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                redirect: "follow",
+                referrerPolicy: "no-referrer",
+                body: JSON.stringify({
+                    name: elem.target.name.value,
+                    email: elem.target.email.value,
+                    password: elem.target.password.value,
+                    address: elem.target.address.value,
+                    phone: elem.target.phone.value,
+                    state: elem.target.state.value,
+                    district: elem.target.district.value,
+                    pincode: elem.target.pincode.value,
+                }),
+            });
+            console.log(response)
+            // const data=await response.json();
+            if(response.status===200) {
+                navigate("/login")
+            }
+            else{
+                alert("User with this credentials already exists")
+            } 
+        } catch (e) {
+            console.log(e);
+        }
+    };
     return (
         <>
             <section className="Register">
@@ -17,7 +52,8 @@ const Register=()=>{
                     </div>
                     <div className="asideLeftFooter">
                         <p>Already Have Account?</p>
-                        <Link to="/login" className="signinButton">Sign in</Link>
+                        <button className="signinButton" onClick={props.change}><Link to="/login" >Sign in</Link></button>
+                        
                     </div>
                 </div>
                 <div className="registerForm">
@@ -25,10 +61,10 @@ const Register=()=>{
                         <h1>REGISTER</h1>
                     </div>
                     <div >
-                        <form className="registerFormContents" onSubmit={handleSubmit}>
-                            <input required type="text" placeholder="Name" name="Name"></input>
+                        <form className="registerFormContents" onSubmit={(elem) => register(elem)}>
+                            <input required type="text" placeholder="Name" name="name"></input>
                             <input required type="email" placeholder="Email" name="email"></input>
-                            <input required type="phone" placeholder="Phone" name="Phone"></input>
+                            <input required type="phone" placeholder="Phone" name="phone"></input>
                             <select required name="state" id="state" className="form-control" placeholder="State">
                                 <option value="State">State</option>
                                 <option value="Andhra Pradesh">Andhra Pradesh</option>
@@ -69,11 +105,11 @@ const Register=()=>{
                                 <option value="West Bengal">West Bengal</option>
                             </select>
                             <input required type="text" name="district" placeholder="District"></input>
-                            <input required type="text" name="Address" placeholder="Address"></input>
+                            <input required type="text" name="address" placeholder="Address"></input>
                             <input required type="number" name="pincode" placeholder="Pincode"></input>
                             <input required type="password" name="password" placeholder="Password"></input>
                             <div className="checkbox">
-                                <input type="checkbox" id="terms" name="T&C" require/><span>I agree to Terms & Condition receiving marketing and promotional materials</span>
+                                <input type="checkbox" id="terms" name="T&C" required/><span>I agree to Terms & Condition receiving marketing and promotional materials</span>
                             </div>
                             <div className="submitFormButton">
                                 <input type="submit" value="Register" />

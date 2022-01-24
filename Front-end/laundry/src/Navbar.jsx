@@ -3,29 +3,7 @@ import {Link} from "react-router-dom"
 import "./navbar.css"
 import { useState } from 'react';
 
-const Navbar = () => {
-    let gt="Register"
-    let pth="/register"
-    if(window.location.pathname==="/register"){
-        gt="sign up"
-        pth="/login"
-    }
-    const [gotoo,setGoto] =useState(gt);
-    const [path, setPath] = useState(pth);
-    const setNav=() =>{
-        const loc = window.location.pathname;
-
-        if (loc === "/" || loc === "/login") {
-            console.log(path,gotoo)
-            setGoto("Register");
-            setPath("/register")
-        }
-        else{
-            console.log(path, gotoo)
-            setGoto("Sign up");
-            setPath("/login")
-        }
-    }
+const Navbar = (props) => {
     return (
     <>
         <header>
@@ -35,7 +13,7 @@ const Navbar = () => {
                     <li>Home</li>
                     <li>Pricing</li>
                     <li>Carrer</li>
-                    <button onClick={setNav}><Link to={path} className="Link" >{gotoo}</Link></button>
+                        <button onClick={props.change}><Link to={props.path} className="Link" >{props.navVariable}</Link></button>
                 </ul>
 
             </nav>

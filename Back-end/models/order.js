@@ -1,5 +1,5 @@
 const mongoose =  require("mongoose");
-const validate = require("validate");
+const validate = require("validator");
 
 const user = require("./user.js");
 const product = require("./product.js");

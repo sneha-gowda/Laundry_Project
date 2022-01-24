@@ -57,17 +57,19 @@
   opacity: 1;
 }
 .signinButton {
+  border: 2px solid #5861ae;
+  border-radius: 5%;
   padding: 6% 12%;
+  background-color: white;
+}
+.signinButton a {
   text-align: center;
   font-family: Sans;
   letter-spacing: 0.3px;
-  color: #5861ae;
   opacity: 1;
-  border: 2px solid #5861ae;
-  border-radius: 5%;
+  color: #5861ae;
   text-decoration: none;
 }
-
 /* Form Styling */
 .registerForm {
   padding: 1% 4%;

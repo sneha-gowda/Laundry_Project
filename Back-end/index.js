@@ -12,6 +12,15 @@ const Access_Token_Secret = '165a6629b602ad71a1ddac31b9dd60baf241f357778ad1748a2
 // middlewares
 app.use(express.json())
 app.use(express.urlencoded({ extended: true })); 
+const cors = require("cors");
+const corsOptions = {
+    origin: '*',
+    credentials: true,            //access-control-allow-credentials:true
+    optionSuccessStatus: 200,
+}
+
+app.use(cors(corsOptions))
+
 
 // collections
 user = userModel.Users;
@@ -22,7 +31,7 @@ app.listen(3007,()=>{
     console.log("imlistening")
 })
 app.get('/',(req,res)=>{
-    res.send("Server not connected")
+    res.send("Server  connected")
 })
 
 // ---------------------------------------Logins --------------------------------
@@ -46,6 +55,7 @@ app.post("/login",async(req, res)=>{
                 const user = { userID: result._id }
                 const token = jwt.sign(user, Access_Token_Secret)
                 userOrders=order.find({userId: result._id}).then(result => {
+                    console.log("s")
                     res.status(200).json({
                         token: token,
                         userName: userName,
@@ -53,6 +63,7 @@ app.post("/login",async(req, res)=>{
                         
                     })
                 }).catch(err => {
+                    console.log("f")
                     res.status(400).send(err)
                 })
             }
@@ -71,18 +82,20 @@ app.post("/login",async(req, res)=>{
 app.post('/register',async(req,res)=>{
     try {
         userDetails = req.body;
+        console.log(userDetails)
         const hashPassword = await bcrypt.hash(req.body.password, 10)
         userDetails.password = hashPassword
         doc1 = new user(userDetails)
         console.log(userDetails)
         doc1.save().then(result => {
-            console.log("hooo")
-            res.status(200).send("Registered")
+            console.log("sucess")
+            res.status(200).json({"message":"Sucess"})
         }).catch(error => {
-            console.log("noo")
+            console.log()
             res.status(400).send(error)
         })
     } catch (err) {
+        console.log("s")
         res.status(500).send(err)
     }
 });
