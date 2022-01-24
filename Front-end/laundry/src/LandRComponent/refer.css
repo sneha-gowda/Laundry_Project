@@ -1,5 +1,6 @@
 .Refer {
   width: 100%;
+  box-sizing: border-box;
   border-top: 3px solid #5861ae;
   text-align: center;
   background: #f8f9ff 0% 0% no-repeat padding-box;
