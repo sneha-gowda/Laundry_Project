@@ -4,7 +4,13 @@ const About = ()=>{
     return(
         <>
             <section className="About">
-                
+                <div className="AboutUS">
+
+                </div>
+                <div className="Home">
+
+                </div>
+
             </section>
         </>
     )
