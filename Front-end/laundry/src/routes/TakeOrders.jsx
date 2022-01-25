@@ -1,9 +1,10 @@
 import React from 'react';
 import "./order.css";
 import PlaceOrderTable from "./PlaceOrderTable";
-// import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"
-
+import home from "./img/home.svg"
+import more from "./img/more.svg"
+import list from "./img/list.svg"
 const TakeOrders = (props) => {
     const navigate = useNavigate();   
     const handleCreate = () => {
@@ -13,9 +14,9 @@ const TakeOrders = (props) => {
         <>
             <div className="Order">
                 <aside>
-                    <img src="image/home.svg" alt="home"></img>
-                    <img onClick={handleCreate} src="image/more.svg" alt="add"></img>
-                    <img src="image/list.svg" alt="list"></img>
+                    <img src={home} alt="home" ></img>
+                    <img onClick={handleCreate} src={more} alt="add"></img>
+                    <img src={list} alt="list"></img>
                 </aside>
                 <div className=" OrderContainer">
                     <section className="OrderHeader">
