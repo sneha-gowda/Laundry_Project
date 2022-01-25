@@ -27,8 +27,14 @@ const Login=(props)=>{
             console.log(response)
             if (response.status === 200) {
                 const body= await response.json()
-                console.log(body)
-                navigate("/login")
+                localStorage.setItem('token', body.token)
+                localStorage.setItem('userName', body.userName)
+                navigate("/orders")
+                props.change()
+                console.log(props)
+                props.setOrd(body.orders)
+                alert("Login Successful")
+                
             }
             else {
                 alert("Invalid credentials")

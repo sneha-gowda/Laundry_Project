@@ -2,6 +2,7 @@
   margin: 0px;
   padding: 0px;
 }
+
 header {
   width: 100%;
   display: flex;
@@ -10,9 +11,11 @@ header {
   margin-top: 0%;
   margin-left: 0px;
   padding: 0px;
+  box-shadow: inset 0px -3px 2px rgb(110 106 106 / 80%);
 }
 header h4 {
   padding-left: 4%;
+  font-size: 2vw;
 }
 nav {
   position: relative;

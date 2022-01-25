@@ -2,19 +2,28 @@ import React from "react";
 import { Route,Routes} from 'react-router-dom';
 import Login from "./routes/Login.jsx";
 import Register from "./routes/Register";
-import Footer from "./Footer"
-import Navbar from "./Navbar.jsx"
+import Footer from "./Footer";
+import Navbar from "./Navbar.jsx";
+import Order from "./routes/Order.jsx"
 import {useState} from "react"
 const App=()=>{
-    const [navVariable,setNavVariable]=useState("Register")
-    const [path,setPath]=useState("/register")
+    const [navVariable,setNavVariable]=useState("Register");
+    const [path,setPath]=useState("/register");
+    const [ordersList,setOrders]=useState([]);
+    const [ordersLen, setOrderslen] = useState(0);
+    const setOrds=(list)=>{
+        setOrders(list)
+        setOrderslen(ordersList.length)
+    }
     const setNav = () => {
         const loc = window.location.pathname;
-
         if (loc === "/" || loc === "/login") {
-            // console.log(path, gotoo)
             setNavVariable("Register");
             setPath("/register")
+        }
+        else if(loc==="/orders"){
+            setNavVariable(localStorage.getItem('userName'))
+            setPath("/orders")
         }
         else {
             // console.log(path, gotoo)
@@ -26,9 +35,10 @@ const App=()=>{
         <>
             <Navbar navVariable={navVariable} change={() => { setNav() }} path={path}></Navbar>
             <Routes>
-                <Route excat path="/" element={<Login path={path} navVariable={navVariable} change={()=>{setNav()}}/>}></Route>
-                <Route excat path="/login" element={<Login path={path} navVariable={navVariable} change={() => { setNav() }} />}></Route>
+                <Route excat path="/" element={<Login path={path} navVariable={navVariable} setOrd={(arr) => { setOrds(arr) }} change={()=>{setNav()}}/>}></Route>
+                <Route excat path="/login" element={<Login path={path} navVariable={navVariable} setOrd={(arr) => { setOrds(arr) }} change={() => { setNav() }} />}></Route>
                 <Route excat path="/register" element={<Register path={path} navVariable={navVariable} change={() => { setNav() }} />}></Route>
+                <Route excat path="/orders" element={<Order ordersList={ordersList} len={ordersLen} setOrd={(arr) => { setOrds(arr) }} />}></Route>
             </Routes>
             <Footer />
         </>
