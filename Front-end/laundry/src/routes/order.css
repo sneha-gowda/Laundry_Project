@@ -16,8 +16,10 @@ aside img {
   background-color: white;
   text-align: center;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  box-sizing: border-box;
+  padding: 2em;
 }
 .OrderContainer {
   display: flex;
@@ -47,6 +49,7 @@ aside img {
   letter-spacing: 0px;
   color: #222b45;
   opacity: 0.5;
+  margin-top: 50%;
 }
 .emptyTable button {
   padding: 0.8vw 1vw;

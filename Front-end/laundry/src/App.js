@@ -4,8 +4,9 @@ import Login from "./routes/Login.jsx";
 import Register from "./routes/Register";
 import Footer from "./Footer";
 import Navbar from "./Navbar.jsx";
-import Order from "./routes/Order.jsx"
-import {useState} from "react"
+import Order from "./routes/Order.jsx";
+import TakeOrders from "./routes/TakeOrders.jsx"
+import {useState,useEffect} from "react"
 const App=()=>{
     const [navVariable,setNavVariable]=useState("Register");
     const [path,setPath]=useState("/register");
@@ -15,6 +16,9 @@ const App=()=>{
         setOrders(list)
         setOrderslen(ordersList.length)
     }
+    useEffect(()=>{ 
+        setOrderslen(ordersList.length)
+    }, [ordersList])
     const setNav = () => {
         const loc = window.location.pathname;
         if (loc === "/" || loc === "/login") {
@@ -39,6 +43,7 @@ const App=()=>{
                 <Route excat path="/login" element={<Login path={path} navVariable={navVariable} setOrd={(arr) => { setOrds(arr) }} change={() => { setNav() }} />}></Route>
                 <Route excat path="/register" element={<Register path={path} navVariable={navVariable} change={() => { setNav() }} />}></Route>
                 <Route excat path="/orders" element={<Order ordersList={ordersList} len={ordersLen} setOrd={(arr) => { setOrds(arr) }} />}></Route>
+                <Route excat path="/orders/placeorder" element={<TakeOrders ordersList={ordersList} len={ordersLen} setOrd={(arr) => { setOrds(arr) }} />}></Route>
             </Routes>
             <Footer />
         </>

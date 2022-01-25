@@ -1,17 +1,18 @@
 import React from 'react';
 import "./order.css";
-import PlaceOrderTable from "./PlaceOrderTable";
 import OrderTable from "./OrderTable";
-import {useState} from "react"
+import {useState,useEffect} from "react";
+import { useNavigate} from "react-router-dom"
 
 const Order=(props)=>{
-    console.log(props.len,"Orders");
-    const orderList = props.ordersList;
+    const navigate = useNavigate();
+    console.log(props.ordersList,"Orders",props.len);
     const [orderHeadervariable, setOHV] = useState(`Orders | ${props.len}`)
-    // const [table,setTable] = useState()
+    useEffect(()=>{
+        setOHV(`Orders | ${props.len}`)
+    },[props.len])
     const handleCreate=()=>{
-        setOHV("Create Order ")
-        console.log(orderHeadervariable)
+        navigate("/orders/placeorder")
     }
     let table=""
     if (props.len ===0){
@@ -25,7 +26,7 @@ const Order=(props)=>{
         <>
             <div className="Order">
                 <aside>
-                    <img backgroundColor="red" src="image/home.svg" alt="home"></img>
+                    <img src="image/home.svg" alt="home"></img>
                     <img onClick={handleCreate} src="image/more.svg" alt="add"></img>
                     <img src="image/list.svg" alt="list"></img>
                 </aside>
@@ -36,7 +37,7 @@ const Order=(props)=>{
                     </section>
                     <div className="tableHolder">
                         {table}
-                        <OrderTable/>
+                        <OrderTable orders={props.ordersList}/>
                     </div>
                 </div>
             </div>           
