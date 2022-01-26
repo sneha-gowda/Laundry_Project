@@ -11,8 +11,12 @@ const Order=(props)=>{
     useEffect(()=>{
         setOHV(`Orders | ${props.len}`)
     },[props.len])
+
     const handleCreate=()=>{
         navigate("/orders/placeorder")
+    }
+    const handleViewOrder=()=>{
+        navigate("/orders")
     }
     let table=""
     if (props.len ===0){
@@ -21,14 +25,14 @@ const Order=(props)=>{
             <button onClick={handleCreate }>Create</button>
         </div></>
     }
-    
+    console.log(localStorage.getItem("token"),"token")
     return (
         <>
             <div className="Order">
                 <aside>
                     <img src="image/home.svg" alt="home"></img>
                     <img onClick={handleCreate} src="image/more.svg" alt="add"></img>
-                    <img src="image/list.svg" alt="list"></img>
+                    <img onClick={handleViewOrder}src="image/list.svg" alt="list"></img>
                 </aside>
                 <div className=" OrderContainer">
                     <section className="OrderHeader">

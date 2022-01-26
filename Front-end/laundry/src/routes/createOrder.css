@@ -1,0 +1,35 @@
+.product-details {
+  display: inline-flex;
+  justify-content: space-evenly;
+  width: 100%;
+  align-items: center;
+}
+.Pimage img {
+  width: 3em;
+  height: 3em;
+  margin: 0 2%;
+}
+.Pimage {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+}
+.Pname {
+  text-align: left;
+  color: #5861ae;
+}
+.Pname p {
+  margin: 0;
+  padding: 0;
+  font-size: 1em;
+  color: #5861ae;
+}
+
+#quantity {
+  width: 5em;
+  height: 2em;
+}
+.wash-type {
+  display: inline-flex;
+  justify-content: space-between;
+}

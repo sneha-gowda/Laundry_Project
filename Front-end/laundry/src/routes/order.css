@@ -1,6 +1,6 @@
 .Order {
   display: flex;
-  /* flex-wrap: wrap; */
+  height: fit-content;
 }
 .Order aside {
   background-color: #5861ae;
@@ -13,14 +13,14 @@ aside img {
   margin: 1em 0;
 }
 .tableHolder {
-  height: 75vh;
+  min-height: 75vh;
   background-color: white;
   text-align: center;
   display: flex;
   align-items: flex-start;
   justify-content: center;
   box-sizing: border-box;
-  padding: 2em;
+  padding: 0 2em 3em;
 }
 .OrderContainer {
   display: flex;
@@ -62,3 +62,6 @@ aside img {
   color: #5861ae;
   opacity: 1;
 }
+/* .tableHolder {
+  overflow: scroll;
+} */

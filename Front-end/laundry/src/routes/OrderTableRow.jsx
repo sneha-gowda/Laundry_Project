@@ -31,12 +31,14 @@ const OrderTableRow=(props)=>{
     const id=props.id
     const [statusclr, setStatusclr] = useState({ "color": "black" });
     const [cncl, setCncl] = useState("Cancel Order");
+    const [status, setStatus] = useState("Washing");
     console.log(props.orders)
     const handleCancel = (id) => {
         console.log("cancel", id);
         row.status = ""
         setStatusclr({ "color": "red" });
         setCncl("")
+        setStatus("Canceled")
     };
     const handleView = (id) => {
         console.log("View");
@@ -57,7 +59,7 @@ const OrderTableRow=(props)=>{
                 <StyledTableCell align="right">{row.StorePhone}</StyledTableCell>
                 <StyledTableCell align="right">{row.TotalItems}</StyledTableCell>
                 <StyledTableCell align="right">{row.Price}</StyledTableCell>
-                <StyledTableCell align="right"><p style={statusclr}>{row.Status}</p></StyledTableCell>
+                <StyledTableCell align="right"><p style={statusclr}>{status}</p></StyledTableCell>
                 <StyledTableCell align="right">
                     <button className="cancel-btn" onClick={() => handleCancel(id)}>{cncl}</button>
                 </StyledTableCell>
