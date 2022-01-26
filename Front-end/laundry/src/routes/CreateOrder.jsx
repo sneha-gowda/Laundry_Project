@@ -1,8 +1,5 @@
 import React from 'react';
-import Washing from "./img/washing-machine.jpg";
-import Ironing from "./img/ironing.svg";
-import Fold from "./img/towel.svg";
-import Bleach from "./img/bleach.svg";
+
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -11,8 +8,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-
-import "./createOrder.css"
+import "./createOrder.css";
+import CreateOrdTableRow from "./CreateOrdTableRow"
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -24,15 +21,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     }
 }));
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-    "&:nth-of-type(odd)": {
-        backgroundColor: theme.palette.action.hover
-    },
-    // hide last border
-    "&:last-child td, &:last-child th": {
-        border: 0
-    }
-}));
+
 
 const rows = [
     {
@@ -94,62 +83,15 @@ const CreateOrder=()=> {
                     <TableRow>
                         <StyledTableCell>Produt Types</StyledTableCell>
                         <StyledTableCell align="right">Quantity</StyledTableCell>
-                        <StyledTableCell align="right">Wash Type</StyledTableCell>
+                        <StyledTableCell style={{"text-align": "center"}} align="right">Wash Type</StyledTableCell>
                         <StyledTableCell align="right">Price</StyledTableCell>
                         <StyledTableCell align="right">Reset</StyledTableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody >
-                    {rows.map((row) => (
-                        <StyledTableRow key={row.name}>
-                            <StyledTableCell style={{"width":"30vw" }} align="right">
-                                <div className="product-details">
-                                    <div className="Pimage">
-                                        <img src={row.ImageURL} alt="" height={50} width={50} />
-                                    </div>
-                                    <div className="Pname">
-                                        <h2>{row.ProductName}</h2>
-                                        <p>Lorem Ipsum is simply dummy text of the</p>
-                                    </div>
-                                </div>
-                            </StyledTableCell>
-                            <StyledTableCell align="right">
-                                <input id="quantity" type="number" />
-                            </StyledTableCell>
-                            <StyledTableCell align="right">
-                                <div className="wash-type">
-                                    <img
-                                        height="20em"
-                                        width="20em"
-                                        src={Washing}
-                                        alt="mach"
-                                    />
-                                    <img
-                                        height="20em"
-                                        width="20em"
-                                        src={Ironing}
-                                        alt="mach"
-                                    />
-                                    <img
-                                        height="20em"
-                                        width="20em"
-                                        src={Fold}
-                                        alt="mach"
-                                    />
-                                    <img
-                                        height="20em"
-                                        width="20em"
-                                        src={Bleach}
-                                        alt="mach"
-                                    />
-                                </div>
-                            </StyledTableCell>
-                            <StyledTableCell align="right">price</StyledTableCell>
-                            <StyledTableCell align="right">
-                                <button>Reset</button>
-                            </StyledTableCell>
-                        </StyledTableRow>
-                    ))}
+                    {rows.map((row)=>{
+                        return (<CreateOrdTableRow row={row}/>)
+                    })}
                 </TableBody>
             </Table>
         </TableContainer>

@@ -18,18 +18,49 @@
   text-align: left;
   color: #5861ae;
 }
+.Pname h2 {
+  font-family: Sans;
+  font-weight: normal;
+}
 .Pname p {
   margin: 0;
   padding: 0;
   font-size: 1em;
   color: #5861ae;
+  letter-spacing: 0;
 }
 
 #quantity {
   width: 5em;
   height: 2em;
+  text-align: center;
+  font-size: 1em;
+  color: #5861ae;
 }
 .wash-type {
+  width: 100%;
   display: inline-flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+}
+.wash-type button {
+  border: none;
+  background-color: transparent;
+}
+.wash-type-icons {
+  transform: scale(1.6);
+}
+
+#reset {
+  padding: 0.5em 1em;
+  border-radius: 5%;
+  border: 1px solid #5861ae;
+  background-color: transparent;
+  margin-left: auto;
+  color: #5861ae;
+  font-size: 1em;
+}
+#calculatedPrice {
+  color: #5861ae;
+  font-weight: bold;
+  font-size: 1.3em;
 }
