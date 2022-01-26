@@ -10,9 +10,9 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import "./createOrder.css";
 import CreateOrdTableRow from "./CreateOrdTableRow"
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import orderDetails from "./tableData/orderDetails.jsx";
 
-const navigate=useNavigate;
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: theme.palette.common.black,
@@ -22,12 +22,30 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
         fontSize: 14
     }
 }));
+const clothTypes = ["Shirt", "Saree", "Jeans", "Trousers", "Joggers","Suits","Gowns"];
+let orderDatail = orderDetails;
 
+const editQuantity = (id,num) => {
+    orderDatail[clothTypes[id]].Quantity=num
+}
+const addService=(id,service) => {
+    let index = orderDatail[clothTypes[id]].Service.push(service);
+    // orderDatail[clothTypes[id]].Service.splice(index,1);
+}
+const removeService = (service,id) =>{
+    let index = orderDatail[clothTypes[id]].Service.indexOf(service);
+    orderDatail[clothTypes[id]].Service.splice(index, 1);
+}
 
-
-const rows =POData
-
+const rows =POData;
+const Proceed = () => {
+    console.log(orderDatail[clothTypes[0]])
+}
 const CreateOrder=()=> {
+    // const navigate = useNavigate;
+    // const CancelPO=() => { 
+    //     navigate("/orders") 
+    // }
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -47,8 +65,8 @@ const CreateOrder=()=> {
                 </TableBody>
             </Table>
             <div className="submit-cancel-btn-container">
-                <button onClick={()=>{navigate("/orders")}}>Cancel</button>
-                <button>Proceed</button>
+                <button ><Link to="/orders" style={{ "textDecoration": "none", "color":"#5861AE"}}>Cancel</Link></button>
+                <button onClick={Proceed}>Proceed</button>
             </div>
         </TableContainer>
     );
