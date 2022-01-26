@@ -29,23 +29,18 @@ const editQuantity = (id,num) => {
     orderDatail[clothTypes[id]].Quantity=num
 }
 const addService=(id,service) => {
-    let index = orderDatail[clothTypes[id]].Service.push(service);
-    // orderDatail[clothTypes[id]].Service.splice(index,1);
+    orderDatail[clothTypes[id]].Service.push(service);
 }
-const removeService = (service,id) =>{
-    let index = orderDatail[clothTypes[id]].Service.indexOf(service);
+const removeService = (id,service) =>{
+    const index=orderDatail[clothTypes[id]].Service.indexOf(service);
     orderDatail[clothTypes[id]].Service.splice(index, 1);
 }
 
 const rows =POData;
 const Proceed = () => {
-    console.log(orderDatail[clothTypes[0]])
+    console.log(orderDatail)
 }
 const CreateOrder=()=> {
-    // const navigate = useNavigate;
-    // const CancelPO=() => { 
-    //     navigate("/orders") 
-    // }
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -60,7 +55,7 @@ const CreateOrder=()=> {
                 </TableHead>
                 <TableBody >
                     {rows.map((row,id)=>{
-                        return (<CreateOrdTableRow key={id} row={row}/>)
+                        return (<CreateOrdTableRow key={id} id={id} row={row} editQuantity={editQuantity} addService={addService} removeService={removeService} />)
                     })}
                 </TableBody>
             </Table>

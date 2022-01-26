@@ -47,7 +47,6 @@ const CreateOrdTableRow=(props)=>{
     useEffect(() => {
         setPrice(prevValue => {
             if (quantity>0 || TSP>0  ){
-                
                 let update = `${quantity} x ${TSP} = ${quantity * TSP}`
                 return update
             }
@@ -69,9 +68,11 @@ const CreateOrdTableRow=(props)=>{
         console.log(event.currentTarget.value,"vale")
         if(event.currentTarget.value<0 || isNaN(event.currentTarget.value)){
             setQuantity(0)
+            props.editQuantity(props.id,0)
         }
         else{
             setQuantity(event.currentTarget.value)
+            props.editQuantity(props.id, event.currentTarget.value)
             
         }
     }
@@ -81,40 +82,48 @@ const CreateOrdTableRow=(props)=>{
             if(wash==="#bababa"){
                 setWash("#5861AE")
                 setTSP(TSP+20)
+                props.addService(props.id,"wash")
             }
             else{
                 setWash("#bababa")
                 setTSP(TSP-20)
+                props.removeService(props.id, "wash")
             }
         }
         else if (event.currentTarget.id === "iron") {
             if (iron === "#bababa") {
                 setIron("#5861AE")
                 setTSP(TSP+10)
+                props.addService(props.id, "iron")
             }
             else {
                 setIron("#bababa")
                 setTSP(TSP-10)
+                props.removeService(props.id, "iron")
             }
         }
         else if (event.currentTarget.id === "fold") {
             if (fold === "#bababa") {
                 setFold("#5861AE")
                 setTSP(TSP + 10)
+                props.addService(props.id, "fold")
             }
             else {
                 setFold("#bababa")
                 setTSP(TSP - 10)
+                props.removeService(props.id, "fold")
             }
         }
         else if (event.currentTarget.id === "bleach") {
             if (bleach === "#bababa") {
                 setBleach("#5861AE")
                 setTSP(TSP+30)
+                props.addService(props.id, "bleach")
             }
             else {
                 setBleach("#bababa")
                 setTSP(TSP -30)
+                props.removeService(props.id, "bleach")
             }
         }
  
