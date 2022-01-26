@@ -47,9 +47,7 @@ const CreateOrdTableRow=(props)=>{
     useEffect(() => {
         setPrice(prevValue => {
             if (quantity>0 || TSP>0  ){
-                if(quantity<0){
-                    setQuantity(0)
-                }
+                
                 let update = `${quantity} x ${TSP} = ${quantity * TSP}`
                 return update
             }

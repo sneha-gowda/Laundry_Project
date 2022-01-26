@@ -12,7 +12,7 @@ import {useState} from "react";
 import OrderTableRow from "./OrderTableRow.jsx"
 
 const OrderTable = (props) => {
-    const [statusclr, setStatusclr] = useState({"color":"black"});
+    // const [statusclr, setStatusclr] = useState({"color":"black"});
     console.log(props.orders.length)
     if(props.orders.length === 0){
         return (<></>)
@@ -60,9 +60,9 @@ const OrderTable = (props) => {
                             <StyledTableCell>OrderId</StyledTableCell>
                             <StyledTableCell align="right">Order Date & Time</StyledTableCell>
                             <StyledTableCell align="right">Store Location</StyledTableCell>
-                            <StyledTableCell align="right">City</StyledTableCell>
+                            <StyledTableCell align="center">City</StyledTableCell>
                             <StyledTableCell align="right">Store Phone</StyledTableCell>
-                            <StyledTableCell>Total Items</StyledTableCell>
+                            <StyledTableCell align="right">Total Items</StyledTableCell>
                             <StyledTableCell align="right">Price</StyledTableCell>
                             <StyledTableCell align="right">Status</StyledTableCell>
                             <StyledTableCell align="right"></StyledTableCell>
