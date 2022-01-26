@@ -1,6 +1,6 @@
 import React from 'react';
 import "./order.css";
-import PlaceOrderTable from "./PlaceOrderTable";
+
 import { useNavigate } from "react-router-dom"
 import home from "./img/home.svg";
 import more from "./img/more.svg";
