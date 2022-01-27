@@ -13,7 +13,9 @@ import CreateOrdTableRow from "./CreateOrdTableRow"
 import { Link } from "react-router-dom";
 import orderDetails from "./tableData/orderDetails.jsx";
 import Modal from "react-modal";
-import Summary from "./Modal/Summary.jsx"
+import Summary from "./Modalfld/Summary.jsx"
+Modal.setAppElement("#root")
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: theme.palette.common.black,
@@ -43,8 +45,9 @@ const removeService = (id,service) =>{
 const CreateOrder=()=> {
     const [modelOpen, setModelOpen] = useState(false)
     const rows = POData;
-    const [placedOrderData,setplacedOrderData]=useState([])
+    const [placedOrderData,setplacedOrderData]=useState([]);
     const [subTotal,setSubTotal] = useState(0);
+    const [totalQuantity,setTotalQuantity] = useState(0)
     const [callForModel,setCallForModel] = useState("noCall")
     useEffect(() =>{
         if (subTotal !== 0) {
@@ -58,13 +61,17 @@ const CreateOrder=()=> {
     }, [callForModel])
     const Proceed = () => {
         // console.log(orderDatail);
-        setplacedOrderData([])
-        setSubTotal(0)
+        setplacedOrderData([]);
+        setSubTotal(0);
+        setTotalQuantity(0);
         for (let key in orderDatail) {
             let obj = {}
             let len = orderDatail[key].Service.length;
             let qunt = orderDatail[key].Quantity;
             if (qunt > 0 && len > 0) {
+                setTotalQuantity(prevQunt=>{
+                    return prevQunt+parseInt(qunt);
+                })
                 obj.Item = key;
                 let serv = ""
                 let servP = 0
@@ -72,15 +79,15 @@ const CreateOrder=()=> {
                     let val = 0
                     if (i === "wash") {
                         val = 30;
-                        serv += "Washing, ";
+                        serv += "Washing ";
                     }
                     else if (i === "iron") {
                         val = 20;
-                        serv += "Ironing, "
+                        serv += "Ironing "
                     }
                     else if (i === "fols") {
                         val = 10
-                        serv += "Folding, "
+                        serv += "Folding "
                     }
                     else {
                         serv += "Chemical wash "
@@ -127,7 +134,7 @@ const CreateOrder=()=> {
                 <button onClick={Proceed}>Proceed</button>
             </div>
             <Modal className="Modal" isOpen={modelOpen} onRequestClose={() => { setModelOpen(false)}}>
-                <Summary orderDetail={placedOrderData} subTotal={subTotal}></Summary>
+                <Summary orderDetail={placedOrderData} subTotal={subTotal} totalQuantity={totalQuantity}></Summary>
             </Modal>
         </TableContainer>
           

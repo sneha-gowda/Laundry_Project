@@ -9,7 +9,7 @@ const Register=(props)=>{
     const register = async (elem) => {
         try {
             elem.preventDefault();
-            const response=await fetch("http://localhost:3007/register", {
+            const response=await fetch("http://localhost:8006/register", {
                 method: "POST",
                 mode: "cors",
                 cache: "no-cache",

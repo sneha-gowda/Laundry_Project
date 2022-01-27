@@ -5,17 +5,42 @@ import ClientAddress from "./ClientAddress.jsx";
 import "./summary.css"
 const Summary=(props)=>{
     const rows = props.orderDetail;
-    console.log(rows,"rowsin summary",props)
+    console.log(rows,"rowsin summary",props,"tq",props.totalQuantity)
     const [storeLoc, setStoreLoc] = useState("");
     const handleStoreLoc=()=>{
         setStoreLoc("JP Nagar")
     }
-    const placeOrder=()=>{
+    const placeOrder=async()=>{
+        try{
         if(storeLoc===""){
             alert("Please select store location")
         }
         else{
-           alert("yooo") 
+            const token=localStorage.getItem("token")
+            const response = await fetch("http://localhost:8006/order", {
+                method: "POST",
+                mode: "cors",
+                cache: "no-cache",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                    "authorization": `Bearer ${token}`
+                },
+                redirect: "follow",
+                referrerPolicy: "no-referrer",
+                body: JSON.stringify({
+                    "totalItems":props.totalQuantity,
+                    "price":props.subTotal+90,
+                    "orderDatail": props.orderDetail
+                }),
+            });
+            if(response.status===200){
+                const data= await response.json()
+                console.log(data)
+            }
+        }
+        }catch(e){
+            alert(e)
         }
     }
     return (

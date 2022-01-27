@@ -27,7 +27,7 @@ user = userModel.Users;
 order= orderModel.Orders;
 product=productModel.Products;
 
-app.listen(3007,()=>{
+app.listen(8006,()=>{
     console.log("imlistening")
 })
 app.get('/',(req,res)=>{
@@ -152,21 +152,23 @@ app.post("/order", authenticateToken ,async(req,res)=>{
     const orderDetails=req.body;
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June","July", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const orderDate=`${date.getDate()} ${monthNames[date.getUTCMonth()]} ${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}`
-    // console.log("hiihihihi")
+
     orderdoc={
         "userId": req.user.userID,
         "Order Date and Time":orderDate,
         "Total Items":orderDetails.totalItems,
         "Price":orderDetails.price,
         "Status": "washing",
-        "Ordered Items": orderDetails.OrderedItems,
+        "orderDatail": orderDetails.orderDatail,
     }
-    // console.log("hii")
+    console.log("hii")
     document=new order(orderdoc);
     document.save().then(result=>{
+        console.log(result.orderDatail, orderDetails.orderDatail)
         res.status(200).send(result)
     }).catch(err=>{
-        res.status(400),send(err)
+        console.log(err)
+        res.status(400).send(err)
     })
 }) 
 

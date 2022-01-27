@@ -9,7 +9,7 @@ const Login=(props)=>{
     const login = async (elem) => {
         try {
             elem.preventDefault();
-            const response = await fetch("http://localhost:3007/login", {
+            const response = await fetch("http://localhost:8006/login", {
                 method: "POST",
                 mode: "cors",
                 cache: "no-cache",

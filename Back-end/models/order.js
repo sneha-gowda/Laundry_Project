@@ -16,26 +16,26 @@ const orderSchema =  new mongoose.Schema({
         type : String
      },
     "Total Items" :{
-
+        type : Number
     },
 
     "Price": {
         type : Number
     },
 
-    "Ordered Items": [
+    "orderDatail": [
         {
-            "product" :{ 
+            "Item" :{ 
                 "type": String
              },
             "quantity" :{
-                type : Number
-            },
-            "price" : {
-                type : Number
-            },
-            "service" :{
                 type : String
+            },
+            "TpriceI" : {
+                type : Number
+            },
+            "service":{
+                type:Array
             }
         }
     ]
