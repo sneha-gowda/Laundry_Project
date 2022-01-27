@@ -78,3 +78,10 @@
   font-size: 1em;
   border-radius: 0.5em;
 }
+
+.Modal {
+  width: 50%;
+  position: absolute;
+  right: 2px;
+  height: -webkit-fill-available;
+}

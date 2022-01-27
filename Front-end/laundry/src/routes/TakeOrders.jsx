@@ -14,7 +14,9 @@ const TakeOrders = (props) => {
     const handleViewOrder = () => {
         navigate("/orders")
     }
+  
     return (
+       
         <>
             <div className="Order">
                 <aside>
@@ -29,6 +31,7 @@ const TakeOrders = (props) => {
                     </section>
                     <div className="tableHolder placeOrder">
                         <CreateOrder/>
+                        
                     </div>
                 </div>
             </div>
