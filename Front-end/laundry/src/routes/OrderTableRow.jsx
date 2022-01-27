@@ -7,7 +7,7 @@ import "./orderTable.css";
 import { useState,useEffect } from "react";
 import CancleAlert from "./CancleAlert"
 import Modal from "react-modal";
-
+import ViewSummary from "./Modalfld/ViewSummary.jsx"
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: theme.palette.common.black,
@@ -34,7 +34,7 @@ const OrderTableRow=(props)=>{
     const [statusclr, setStatusclr] = useState({ "color": "black" });
     const [cncl, setCncl] = useState("Cancel Order");
     const [status, setStatus] = useState(row.Status);
-    console.log(status,"status")
+    const [displayViewSummary, setdisplayViewSummary]= useState(false)
     useEffect(() =>{
         if (status === "Cancelled"){
             setStatusclr({"color":"red"})
@@ -42,10 +42,15 @@ const OrderTableRow=(props)=>{
         }
     },[status])
 
+// --------------------------View Summary--------------------------------
+    const handleView = (id) => {
+        setdisplayViewSummary(true)
+    };
+
+
 // ---------------------Handling Cancel Order ----------------------------
     const [displayCancelAlert,setDisplayCancelAlert]= useState(false)
     const handleCancelYes = () => {
-        console.log("cancel",id);
         row.status = ""
         setStatusclr({ "color": "red" });
         setCncl("");
@@ -56,13 +61,8 @@ const OrderTableRow=(props)=>{
     const handleCancelNo=()=>{
         setDisplayCancelAlert(false);
     }
-
-
-
-    const handleView = (id) => {
-        console.log("View");
-    };
     return(
+    
         <>
             <StyledTableRow key={row.name}>
                 <StyledTableCell component="th" scope="row">
@@ -88,6 +88,9 @@ const OrderTableRow=(props)=>{
                 <StyledTableCell align="right">
                     <button className="view-btn" onClick={() => handleView(row.Cancel)}>View</button>
                 </StyledTableCell>
+                <Modal className="View-Summary-model" isOpen={displayViewSummary} onRequestClose={() => { setdisplayViewSummary(false) }}>
+                    <ViewSummary statusOfOrd={status} handleCancelYes={() => { setdisplayViewSummary(false); setDisplayCancelAlert(true)}} ORDFullID={props.ORDFullID} orderDetail={props.orderDetail}></ViewSummary>
+                </Modal>
             </StyledTableRow>
         </>
     )

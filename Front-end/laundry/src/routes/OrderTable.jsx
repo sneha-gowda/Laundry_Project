@@ -34,8 +34,7 @@ const OrderTable = (props) => {
             return {
                 OrderId,OrderDateTime,StoreLocation,City,StorePhone,TotalItems,Price,Status,Cancel,View
             };
-        }
-        console.log(props.orders)
+        };
         let order=props.orders;
         const rows = order.map((elem, id) => {
             return createData(
@@ -70,7 +69,7 @@ const OrderTable = (props) => {
                     </TableHead>
                     <TableBody>
                         {rows.map((row,id)=>{
-                            return <OrderTableRow updateOnCancel={() => { updateOnCancel(id) }} row={row} id={id} ORDFullID={order[id]._id} />
+                            return <OrderTableRow orderDetail={order[id].orderDatail} updateOnCancel={() => { updateOnCancel(id) }} row={row} id={id} ORDFullID={order[id]._id} />
                         })}
                     </TableBody>
                 </Table>

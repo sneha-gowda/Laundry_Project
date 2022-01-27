@@ -5,7 +5,6 @@ import "./cancleAlert.css"
 const CancleAlert=(props)=> {
   const callCancelAPI= async()=>{
     try {
-        alert(props.ORDFullID)
         const token = localStorage.getItem("token")
       const response = await fetch("http://localhost:8006/cancel", {
           method: "PUT",
@@ -23,7 +22,6 @@ const CancleAlert=(props)=> {
           }),
         });
         if (response.status === 200) {
-          alert("Order canceled")
           props.handleCancelYes()
         }
         else{

@@ -9,3 +9,9 @@
   background-color: transparent;
   font-size: 1em;
 }
+.View-Summary-model {
+  width: 50%;
+  position: absolute;
+  right: 2px;
+  height: -webkit-fill-available;
+}

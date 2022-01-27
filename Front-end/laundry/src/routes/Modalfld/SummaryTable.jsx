@@ -16,7 +16,6 @@ import Paper from "@mui/material/Paper";
 const SummaryTable=(props)=> {
     const rows=props.rows ;
     const subTotal=props.subTotal;
-    console.log(rows)
     return (
         <TableContainer className="order-summary-table" component={Paper}>
             <Table sx={{ minWidth: 700 }} aria-label="spanning table">

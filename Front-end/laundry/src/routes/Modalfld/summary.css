@@ -1,4 +1,5 @@
-.summary {
+.summary,
+.View-summary {
   position: relative;
   padding: 0 0 1em 0;
   background-color: white;
@@ -32,7 +33,8 @@
 .order-summary-table {
   font-family: Open sans;
 }
-.summary-footer {
+.summary-footer,
+.view-summary-footer {
   position: absolute;
   bottom: 0;
   padding: 2%;
@@ -82,5 +84,13 @@
   background-color: transparent;
   font-weight: bold;
   border: 1px solid transparent;
+  cursor: pointer;
+}
+.view-summary-footer button {
+  padding: 1% 3%;
+  background-color: red;
+  border: 2px solid red;
+  color: #ffffff;
+  font-size: 1em;
   cursor: pointer;
 }
