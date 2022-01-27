@@ -57,7 +57,6 @@ app.post("/login",async(req, res)=>{
             const hashPassword = result.password;
             const userName=result.name
             bcrypt.compare(reqPassword, hashPassword).then((outputofCompare) => {
-                console.log("hi")
                 if (outputofCompare) {
                     const user = { userID: result._id }
                     const token = jwt.sign(user, Access_Token_Secret)
@@ -125,7 +124,8 @@ const authenticateToken = (req, res, next) => {
                     req.user = userDetails
                     next()
                 }).catch(err => {
-                    res.status(404).send("User not found")
+                    console.log("token erre")
+                    res.status(400).send("User not found")
                 })
 
             }
@@ -177,9 +177,12 @@ app.post("/order", authenticateToken ,async(req,res)=>{
 app.put("/cancel", authenticateToken ,async(req, res)=>{
    
     orderID = req.body.order_id;
+    console.log(orderID)
     order.findOneAndUpdate({_id:orderID},{"Status":"Cancelled"}).then(result=>{
+        console.log(orderID,result)
         res.status(200).send("Updated")
     }).catch(err=>{
-        res.status(400).send(err)
+        console.log(err)
+        res.status(400).json({"message":err})
     })
 })

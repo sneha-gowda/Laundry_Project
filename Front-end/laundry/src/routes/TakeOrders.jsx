@@ -30,7 +30,7 @@ const TakeOrders = (props) => {
                         <input type="search" placeholder="search" />
                     </section>
                     <div className="tableHolder placeOrder">
-                        <CreateOrder/>
+                        <CreateOrder setOrd={props.setOrd}/>
                         
                     </div>
                 </div>

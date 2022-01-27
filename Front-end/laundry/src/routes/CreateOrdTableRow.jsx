@@ -8,6 +8,7 @@ import DryCleaningIcon from '@mui/icons-material/DryCleaning';
 import SoapIcon from '@mui/icons-material/Soap';
 import "./createOrder.css";
 
+
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
     "&:nth-of-type(odd)": {
         backgroundColor: theme.palette.action.hover
@@ -167,6 +168,7 @@ const CreateOrdTableRow=(props)=>{
                 <StyledTableCell align="right">
                     <button onClick={reset} id="reset" style={{"display":displayReset}}>Reset</button>
                 </StyledTableCell>
+              
             </StyledTableRow>
         </>
     )

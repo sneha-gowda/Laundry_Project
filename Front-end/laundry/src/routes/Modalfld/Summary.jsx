@@ -36,7 +36,10 @@ const Summary=(props)=>{
             });
             if(response.status===200){
                 const data= await response.json()
-                console.log(data)
+                console.log(data,"data")
+                props.setOrd(data)
+                alert("Order placed successfully")
+
             }
         }
         }catch(e){

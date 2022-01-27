@@ -4,7 +4,9 @@ import { styled } from '@mui/material/styles';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import  TableRow from '@mui/material/TableRow';
 import "./orderTable.css";
-import { useState } from "react";
+import { useState,useEffect } from "react";
+import CancleAlert from "./CancleAlert"
+import Modal from "react-modal";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -31,15 +33,32 @@ const OrderTableRow=(props)=>{
     const id=props.id
     const [statusclr, setStatusclr] = useState({ "color": "black" });
     const [cncl, setCncl] = useState("Cancel Order");
-    const [status, setStatus] = useState("Washing");
-    console.log(props.orders)
-    const handleCancel = (id) => {
-        console.log("cancel", id);
+    const [status, setStatus] = useState(row.Status);
+    console.log(status,"status")
+    useEffect(() =>{
+        if (status === "Cancelled"){
+            setStatusclr({"color":"red"})
+            setCncl("")
+        }
+    },[status])
+
+// ---------------------Handling Cancel Order ----------------------------
+    const [displayCancelAlert,setDisplayCancelAlert]= useState(false)
+    const handleCancelYes = () => {
+        console.log("cancel",id);
         row.status = ""
         setStatusclr({ "color": "red" });
-        setCncl("")
-        setStatus("Canceled")
+        setCncl("");
+        setStatus("Canceled");
+        props.updateOnCancel();
+        setDisplayCancelAlert(false);
     };
+    const handleCancelNo=()=>{
+        setDisplayCancelAlert(false);
+    }
+
+
+
     const handleView = (id) => {
         console.log("View");
     };
@@ -61,8 +80,11 @@ const OrderTableRow=(props)=>{
                 <StyledTableCell align="right">{row.Price}</StyledTableCell>
                 <StyledTableCell align="right"><p style={statusclr}>{status}</p></StyledTableCell>
                 <StyledTableCell align="right">
-                    <button className="cancel-btn" onClick={() => handleCancel(id)}>{cncl}</button>
+                    <button className="cancel-btn" onClick={() => { setDisplayCancelAlert(true)}}>{cncl}</button>
                 </StyledTableCell>
+                <Modal className="Cancel-model" isOpen={displayCancelAlert} onRequestClose={()=>{setDisplayCancelAlert(false)}}>
+                    <CancleAlert handleCancelNo={handleCancelNo} handleCancelYes={handleCancelYes} orderID={row.OrderId} ORDFullID={props.ORDFullID}></CancleAlert>
+                </Modal>
                 <StyledTableCell align="right">
                     <button className="view-btn" onClick={() => handleView(row.Cancel)}>View</button>
                 </StyledTableCell>

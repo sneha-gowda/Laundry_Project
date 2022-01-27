@@ -42,7 +42,7 @@ const removeService = (id,service) =>{
     orderDatail[clothTypes[id]].Service.splice(index, 1);
 }
 
-const CreateOrder=()=> {
+const CreateOrder=(props)=> {
     const [modelOpen, setModelOpen] = useState(false)
     const rows = POData;
     const [placedOrderData,setplacedOrderData]=useState([]);
@@ -134,7 +134,7 @@ const CreateOrder=()=> {
                 <button onClick={Proceed}>Proceed</button>
             </div>
             <Modal className="Modal" isOpen={modelOpen} onRequestClose={() => { setModelOpen(false)}}>
-                <Summary orderDetail={placedOrderData} subTotal={subTotal} totalQuantity={totalQuantity}></Summary>
+                <Summary setOrd={props.setOrd} orderDetail={placedOrderData} subTotal={subTotal} totalQuantity={totalQuantity}></Summary>
             </Modal>
         </TableContainer>
           

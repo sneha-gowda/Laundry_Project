@@ -8,17 +8,16 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import "./orderTable.css";
-// import {useState} from "react";
 import OrderTableRow from "./OrderTableRow.jsx"
 
 const OrderTable = (props) => {
-    // const [statusclr, setStatusclr] = useState({"color":"black"});
-    console.log(props.orders.length)
     if(props.orders.length === 0){
         return (<></>)
     }
     else{
-       
+       const updateOnCancel=(id)=>{
+           props.orders[id].Status="Canceled"
+       }
         const StyledTableCell = styled(TableCell)(({ theme }) => ({
             [`&.${tableCellClasses.head}`]: {
                 backgroundColor: theme.palette.common.black,
@@ -45,9 +44,9 @@ const OrderTable = (props) => {
                 "JP Nagar",
                 "Banglore",
                 "9876543211",
-                elem["Ordered Items"].length,
+                elem["Total Items"],
                 elem.Price,
-                "Washing",
+                elem.Status,
                 "Cancel order",
                 id
             );
@@ -71,7 +70,7 @@ const OrderTable = (props) => {
                     </TableHead>
                     <TableBody>
                         {rows.map((row,id)=>{
-                            return <OrderTableRow row={row} id={id}/>
+                            return <OrderTableRow updateOnCancel={() => { updateOnCancel(id) }} row={row} id={id} ORDFullID={order[id]._id} />
                         })}
                     </TableBody>
                 </Table>

@@ -14,7 +14,11 @@ const App=()=>{
     const [ordersLen, setOrderslen] = useState(0);
     const setOrds=(list)=>{
         setOrders(list)
-        setOrderslen(ordersList.length)
+    }
+    const addOrds = (list) => {
+        setOrders(prevOrds=>{
+            return ([list, ...prevOrds])
+        })
     }
     useEffect(()=>{ 
         setOrderslen(ordersList.length)
@@ -43,7 +47,7 @@ const App=()=>{
                 <Route excat path="/login" element={<Login path={path} navVariable={navVariable} setOrd={(arr) => { setOrds(arr) }} change={() => { setNav() }} />}></Route>
                 <Route excat path="/register" element={<Register path={path} navVariable={navVariable} change={() => { setNav() }} />}></Route>
                 <Route excat path="/orders" element={<Order ordersList={ordersList} len={ordersLen} setOrd={(arr) => { setOrds(arr) }} />}></Route>
-                <Route excat path="/orders/placeorder" element={<TakeOrders ordersList={ordersList} len={ordersLen} setOrd={(arr) => { setOrds(arr) }} />}></Route>
+                <Route excat path="/orders/placeorder" element={<TakeOrders ordersList={ordersList} len={ordersLen} setOrd={(arr) => { addOrds(arr) }} />}></Route>
             </Routes>
             <Footer />
         </>
