@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect,createContext} from 'react';
 import POData from "./tableData/placeOrderData.jsx"
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
@@ -16,6 +16,7 @@ import Modal from "react-modal";
 import Summary from "./Modalfld/Summary.jsx"
 Modal.setAppElement("#root")
 
+const EmptyOrdDatailContext = createContext();
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: theme.palette.common.black,
@@ -25,7 +26,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
         fontSize: 14
     }
 }));
-
 
 
 const clothTypes = ["Shirt", "Saree", "Jeans", "Trousers", "Joggers","Suits","Gowns"];
@@ -38,17 +38,27 @@ const addService=(id,service) => {
     orderDatail[clothTypes[id]].Service.push(service);
 }
 const removeService = (id,service) =>{
-    const index=orderDatail[clothTypes[id]].Service.indexOf(service);
-    orderDatail[clothTypes[id]].Service.splice(index, 1);
+    if(service==="All"){
+        orderDatail[clothTypes[id]].Service=[]
+    }
+    else{
+        const index=orderDatail[clothTypes[id]].Service.indexOf(service);
+        orderDatail[clothTypes[id]].Service.splice(index, 1);
+    }
 }
 
 const CreateOrder=(props)=> {
-    const [modelOpen, setModelOpen] = useState(false)
+    const [modelOpen, setModelOpen] = useState(false);
     const rows = POData;
     const [placedOrderData,setplacedOrderData]=useState([]);
     const [subTotal,setSubTotal] = useState(0);
-    const [totalQuantity,setTotalQuantity] = useState(0)
-    const [callForModel,setCallForModel] = useState("noCall")
+    const [totalQuantity,setTotalQuantity] = useState(0);
+    const [callForModel,setCallForModel] = useState("noCall");
+    const clrorderDatail= () => {
+         orderDatail = orderDetails ;
+         alert("cleared",orderDatail);
+        }
+
     useEffect(() =>{
         if (subTotal !== 0) {
             // console.log(placedOrderData, "here", subTotal, orderDatail);
@@ -60,7 +70,6 @@ const CreateOrder=(props)=> {
         }
     }, [callForModel])
     const Proceed = () => {
-        // console.log(orderDatail);
         setplacedOrderData([]);
         setSubTotal(0);
         setTotalQuantity(0);
@@ -133,12 +142,15 @@ const CreateOrder=(props)=> {
                 <button ><Link to="/orders" style={{ "textDecoration": "none", "color":"#5861AE"}}>Cancel</Link></button>
                 <button onClick={Proceed}>Proceed</button>
             </div>
-            <Modal className="Modal" isOpen={modelOpen} onRequestClose={() => { setModelOpen(false)}}>
-                <Summary setOrd={props.setOrd} orderDetail={placedOrderData} subTotal={subTotal} totalQuantity={totalQuantity}></Summary>
-            </Modal>
+            <EmptyOrdDatailContext.Provider value={{clrorderDatail}}>
+                <Modal className="Modal" isOpen={modelOpen} onRequestClose={() => { setModelOpen(false)}}>
+                    <Summary setOrd={props.setOrd} orderDetail={placedOrderData} subTotal={subTotal} totalQuantity={totalQuantity}></Summary>
+                </Modal>
+            </EmptyOrdDatailContext.Provider>
         </TableContainer>
           
     );
-}
-
+};
+// console.log(EmptyOrdDatailContext)
 export default CreateOrder;
+export {EmptyOrdDatailContext};

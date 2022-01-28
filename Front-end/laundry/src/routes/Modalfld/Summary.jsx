@@ -1,11 +1,13 @@
-import React,{useState} from 'react';
+import React,{useState,useContext} from 'react';
 import SummaryTable from "./SummaryTable.jsx";
 import StoreAddress from "./StoreAddress.jsx";
 import ClientAddress from "./ClientAddress.jsx";
+import {EmptyOrdDatailContext} from "../CreateOrder.jsx"
 import "./summary.css"
 const Summary=(props)=>{
+    const {clrorderDatail } = useContext(EmptyOrdDatailContext);
     const rows = props.orderDetail;
-    console.log(rows,"rowsin summary",props,"tq",props.totalQuantity)
+    console.log(rows,"rows")
     const [storeLoc, setStoreLoc] = useState("");
     const handleStoreLoc=()=>{
         setStoreLoc("JP Nagar")
@@ -38,8 +40,9 @@ const Summary=(props)=>{
                 const data= await response.json()
                 console.log(data,"data")
                 props.setOrd(data)
-                alert("Order placed successfully")
-
+                alert("Order placed successfully");
+                clrorderDatail();
+                // console.log(typeof(clrorderDatail))
             }
         }
         }catch(e){

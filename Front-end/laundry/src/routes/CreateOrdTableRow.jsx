@@ -64,6 +64,8 @@ const CreateOrdTableRow=(props)=>{
         setWash("#bababa");
         setIron("#bababa");
         setFold("#bababa");
+        props.editQuantity(props.id, 0);
+        props.removeService(props.id, "All")
         setBleach("#bababa");
     }
     const HandleInputChange=(event)=>{
