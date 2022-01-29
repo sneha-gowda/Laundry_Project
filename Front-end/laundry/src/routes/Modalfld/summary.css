@@ -1,0 +1,97 @@
+.summary,
+.View-summary {
+  position: relative;
+  padding: 0 0 1em 0;
+  background-color: white;
+  height: -webkit-fill-available;
+  overflow: scroll;
+}
+.summary-header {
+  background-color: #5861ae;
+}
+.summary-header h1 {
+  color: #ffffff;
+  padding: 0.5em 1em;
+  font-family: Open sans;
+  letter-spacing: 0px;
+  font-weight: normal;
+}
+.summary-store-add {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1em;
+  background-color: #f4f9ff;
+}
+.summary-store-add select {
+  width: 15vw;
+  cursor: pointer;
+}
+.summary-store-add h4 {
+  color: black;
+  letter-spacing: 0.4px;
+}
+.order-summary-table {
+  font-family: Open sans;
+}
+.summary-footer,
+.view-summary-footer {
+  position: absolute;
+  padding: 2%;
+  background-color: #00000015;
+  text-align: right;
+  width: 96%;
+  bottom: 0;
+}
+.summary-footer button {
+  padding: 1% 3%;
+  background-color: #5861ae;
+  border: 2px solid #5861ae;
+  color: #ffffff;
+  font-size: 1em;
+  cursor: pointer;
+}
+.summary-client-address {
+  padding: 1em 2em;
+  width: 100%;
+}
+.c-add-btn {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+}
+.c-address {
+  width: 10em;
+  height: 5em;
+  padding: 0.2em;
+  border: 1px solid #5861ae;
+  text-align: left;
+  margin-top: 0.2em;
+  border-radius: 2%;
+}
+
+.c-address h2 {
+  font-weight: bold;
+  font-size: 1em;
+}
+.c-add-btn button {
+  min-width: fit-content;
+  padding: 0.5em 2em;
+  height: fit-content;
+  margin-left: 3%;
+  color: #5861ae;
+  background-color: transparent;
+  font-weight: bold;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.view-summary-footer button {
+  padding: 1% 3%;
+  background-color: red;
+  border: 2px solid red;
+  color: #ffffff;
+  font-size: 1em;
+  cursor: pointer;
+}

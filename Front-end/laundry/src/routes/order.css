@@ -1,0 +1,64 @@
+.Order {
+  display: flex;
+  height: fit-content;
+}
+.Order aside {
+  background-color: #5861ae;
+  display: flex;
+  flex-direction: column;
+  padding: 1em 1.5em;
+}
+
+aside img {
+  margin: 1em 0;
+}
+.tableHolder {
+  min-height: 75vh;
+  background-color: white;
+  text-align: center;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0 2em 3em;
+}
+.OrderContainer {
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  width: -webkit-fill-available;
+}
+.OrderHeader {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2em;
+}
+.OrderHeader input {
+  width: 15vw;
+  box-sizing: border-box;
+  border: none;
+  font-size: 1em;
+  border-bottom: 1px solid #77838f;
+}
+.emptyTable p {
+  color: #222b45;
+  font-family: open sans;
+  text-align: left;
+  letter-spacing: 0px;
+  color: #222b45;
+  opacity: 0.5;
+  margin-top: 50%;
+}
+.emptyTable button {
+  padding: 0.8vw 1vw;
+  background-color: white;
+  border: 1px solid #5861ae;
+  border-radius: 4px;
+  opacity: 1;
+  letter-spacing: 0px;
+  color: #5861ae;
+  opacity: 1;
+}
