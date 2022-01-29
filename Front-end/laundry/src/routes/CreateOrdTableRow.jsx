@@ -69,7 +69,6 @@ const CreateOrdTableRow=(props)=>{
         setBleach("#bababa");
     }
     const HandleInputChange=(event)=>{
-        console.log(event.currentTarget.value,"vale")
         if(event.currentTarget.value<0 || isNaN(event.currentTarget.value)){
             setQuantity(0)
             props.editQuantity(props.id,0)
@@ -81,7 +80,6 @@ const CreateOrdTableRow=(props)=>{
         }
     }
     const handlewashType=(event)=>{
-        console.log("target", event.currentTarget.id)
         if (event.currentTarget.id ==="wash"){
             if(wash==="#bababa"){
                 setWash("#5861AE")

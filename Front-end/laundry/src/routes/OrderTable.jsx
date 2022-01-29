@@ -69,7 +69,7 @@ const OrderTable = (props) => {
                     </TableHead>
                     <TableBody>
                         {rows.map((row,id)=>{
-                            return <OrderTableRow orderDetail={order[id].orderDatail} updateOnCancel={() => { updateOnCancel(id) }} row={row} id={id} ORDFullID={order[id]._id} />
+                            return <OrderTableRow key={id} orderDetail={order[id].orderDatail} updateOnCancel={() => { updateOnCancel(id) }} row={row} id={id} ORDFullID={order[id]._id} />
                         })}
                     </TableBody>
                 </Table>

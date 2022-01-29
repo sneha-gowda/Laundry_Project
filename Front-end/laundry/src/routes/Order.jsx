@@ -6,7 +6,6 @@ import { useNavigate} from "react-router-dom"
 
 const Order=(props)=>{
     const navigate = useNavigate();
-    console.log(props.ordersList,"Orders",props.len);
     const [orderHeadervariable, setOHV] = useState(`Orders | ${props.len}`)
     useEffect(()=>{
         setOHV(`Orders | ${props.len}`)
@@ -25,7 +24,6 @@ const Order=(props)=>{
             <button onClick={handleCreate }>Create</button>
         </div></>
     }
-    console.log(localStorage.getItem("token"),"token")
     return (
         <>
             <div className="Order">

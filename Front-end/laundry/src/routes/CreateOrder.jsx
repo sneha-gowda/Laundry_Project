@@ -10,11 +10,12 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import "./createOrder.css";
 import CreateOrdTableRow from "./CreateOrdTableRow"
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import orderDetails from "./tableData/orderDetails.jsx";
 import Modal from "react-modal";
-import Summary from "./Modalfld/Summary.jsx"
-Modal.setAppElement("#root")
+import Summary from "./Modalfld/Summary.jsx";
+import SuccessAlert from "./Modalfld/SuccessAlert"
+Modal.setAppElement("#root");
 
 const EmptyOrdDatailContext = createContext();
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -48,15 +49,16 @@ const removeService = (id,service) =>{
 }
 
 const CreateOrder=(props)=> {
+    const navigate= useNavigate();
     const [modelOpen, setModelOpen] = useState(false);
     const rows = POData;
     const [placedOrderData,setplacedOrderData]=useState([]);
     const [subTotal,setSubTotal] = useState(0);
     const [totalQuantity,setTotalQuantity] = useState(0);
     const [callForModel,setCallForModel] = useState("noCall");
+    const [sucessAlert,setSucessAlert] = useState(false)
     const clrorderDatail= () => {
-         orderDatail = orderDetails ;
-         alert("cleared",orderDatail);
+         orderDatail = orderDetails;
         }
 
     useEffect(() =>{
@@ -111,10 +113,8 @@ const CreateOrder=(props)=> {
                 setplacedOrderData(placedOrderData=>{
                     return [...placedOrderData, obj]
                 });
-                // console.log(subTotal,placedOrderData,"infor")
             }}
             setCallForModel((subTotal)=>{
-                console.log("subtotal",subTotal)
                 return(subTotal+1)
             })
         
@@ -144,13 +144,16 @@ const CreateOrder=(props)=> {
             </div>
             <EmptyOrdDatailContext.Provider value={{clrorderDatail}}>
                 <Modal className="Modal" isOpen={modelOpen} onRequestClose={() => { setModelOpen(false)}}>
-                    <Summary setOrd={props.setOrd} orderDetail={placedOrderData} subTotal={subTotal} totalQuantity={totalQuantity}></Summary>
+                    <Summary setOrd={props.setOrd} orderDetail={placedOrderData} subTotal={subTotal} totalQuantity={totalQuantity} clsSummary={() => { setModelOpen(false); setSucessAlert(true)}}></Summary>
                 </Modal>
             </EmptyOrdDatailContext.Provider>
+            <Modal className="order-success-alert-container" isOpen={sucessAlert} onRequestClose={() => { setSucessAlert(false) }}>
+                <SuccessAlert gotoOrder={() => { navigate("/orders") }} ></SuccessAlert>
+            </Modal>
         </TableContainer>
+         
           
     );
 };
-// console.log(EmptyOrdDatailContext)
 export default CreateOrder;
 export {EmptyOrdDatailContext};

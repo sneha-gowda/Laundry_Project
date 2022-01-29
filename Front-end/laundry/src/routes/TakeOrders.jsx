@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom"
 import home from "./img/home.svg";
 import more from "./img/more.svg";
 import list from "./img/list.svg";
-import CreateOrder from "./CreateOrder.jsx"
+import CreateOrder from "./CreateOrder.jsx";
+
 const TakeOrders = (props) => {
     const navigate = useNavigate();   
     const handleCreate = () => {
@@ -31,7 +32,6 @@ const TakeOrders = (props) => {
                     </section>
                     <div className="tableHolder placeOrder">
                         <CreateOrder setOrd={props.setOrd}/>
-                        
                     </div>
                 </div>
             </div>

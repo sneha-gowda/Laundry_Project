@@ -7,7 +7,6 @@ import "./summary.css"
 const Summary=(props)=>{
     const {clrorderDatail } = useContext(EmptyOrdDatailContext);
     const rows = props.orderDetail;
-    console.log(rows,"rows")
     const [storeLoc, setStoreLoc] = useState("");
     const handleStoreLoc=()=>{
         setStoreLoc("JP Nagar")
@@ -38,11 +37,9 @@ const Summary=(props)=>{
             });
             if(response.status===200){
                 const data= await response.json()
-                console.log(data,"data")
-                props.setOrd(data)
-                alert("Order placed successfully");
+                props.setOrd(data);
                 clrorderDatail();
-                // console.log(typeof(clrorderDatail))
+                props.clsSummary();
             }
         }
         }catch(e){

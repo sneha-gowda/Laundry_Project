@@ -8,6 +8,12 @@ import Order from "./routes/Order.jsx";
 import TakeOrders from "./routes/TakeOrders.jsx"
 import {useState,useEffect} from "react"
 const App=()=>{
+    // const location=window.location.pathname;
+    // let navBarDis=location.getItem("userName");
+    // let navBarPath = location.getItem("/orders")
+    // if(location==="/" || location==="/login"){
+
+    // }
     const [navVariable,setNavVariable]=useState("Register");
     const [path,setPath]=useState("/register");
     const [ordersList,setOrders]=useState([]);
