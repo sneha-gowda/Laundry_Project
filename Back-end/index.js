@@ -158,7 +158,7 @@ app.post("/order", authenticateToken ,async(req,res)=>{
         "Order Date and Time":orderDate,
         "Total Items":orderDetails.totalItems,
         "Price":orderDetails.price,
-        "Status": "washing",
+        "Status": "Washed",
         "orderDatail": orderDetails.orderDatail,
     }
     console.log("hii")
