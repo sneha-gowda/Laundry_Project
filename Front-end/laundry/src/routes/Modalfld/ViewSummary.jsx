@@ -15,7 +15,7 @@ const Summary = (props) => {
             setDisplayCnlBtn({"display":"inline"})
         }
     },[props.statusOfOrd])
-    const placeOrder = async () => {
+    const cancelOrder = async () => {
         props.handleCancelYes()
     }
     return (
@@ -53,7 +53,7 @@ const Summary = (props) => {
                 </section>
                 <section className="view-summary-footer">
                     <div className="cancel-ord-btn-container">
-                        <button type="button" onClick={placeOrder} className="cancel-orddd-btn" style={displayCnlBtn} >
+                        <button type="button" onClick={cancelOrder} className="cancel-orddd-btn" style={displayCnlBtn} >
                             Cancel
                         </button>
                     </div>

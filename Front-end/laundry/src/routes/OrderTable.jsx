@@ -16,7 +16,8 @@ const OrderTable = (props) => {
     }
     else{
        const updateOnCancel=(id)=>{
-           props.orders[id].Status="Canceled"
+           props.orders[id].Status="Cancelled";
+           console.log(props.orders,"camcelled")
        }
         const StyledTableCell = styled(TableCell)(({ theme }) => ({
             [`&.${tableCellClasses.head}`]: {

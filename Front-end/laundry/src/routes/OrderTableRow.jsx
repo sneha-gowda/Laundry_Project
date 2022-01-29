@@ -54,7 +54,7 @@ const OrderTableRow=(props)=>{
         row.status = ""
         setStatusclr({ "color": "red" });
         setCncl("");
-        setStatus("Canceled");
+        setStatus("Cancelled");
         props.updateOnCancel();
         setDisplayCancelAlert(false);
     };
@@ -89,7 +89,7 @@ const OrderTableRow=(props)=>{
                     <button className="view-btn" onClick={() => handleView(row.Cancel)}>View</button>
                 </StyledTableCell>
                 <Modal className="View-Summary-model" isOpen={displayViewSummary} onRequestClose={() => { setdisplayViewSummary(false) }}>
-                    <ViewSummary statusOfOrd={status} handleCancelYes={() => { setdisplayViewSummary(false); setDisplayCancelAlert(true)}} ORDFullID={props.ORDFullID} orderDetail={props.orderDetail}></ViewSummary>
+                    <ViewSummary statusOfOrd={status} handleCancelYes={() => { setdisplayViewSummary(false); setDisplayCancelAlert(true) }} ORDFullID={props.ORDFullID} subTotal={row.Price-90} orderDetail={props.orderDetail}></ViewSummary>
                 </Modal>
             </StyledTableRow>
         </>
