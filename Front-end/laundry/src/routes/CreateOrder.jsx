@@ -67,8 +67,6 @@ const CreateOrder=(props)=> {
         // Deep copying
         orderDatail = JSON.parse(JSON.stringify(orderDetails));
         }
-    
-
     useEffect(() =>{
         if (subTotal !== 0) {
             
