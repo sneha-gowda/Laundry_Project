@@ -6,6 +6,8 @@
   background: #ffffff 0% 0% no-repeat padding-box;
   border-radius: 2px;
   opacity: 1;
+  min-height: fit-content;
+  min-width: fit-content;
   height: 20em;
   width: 20em;
   background: #ffffff 0% 0% no-repeat padding-box;
@@ -34,7 +36,7 @@
   height: fit-content;
   width: fit-content;
   padding: 1% 0;
-  margin: 5em;
+  margin: 3em;
 }
 .success-alert-msg-1 {
   width: 10em;
