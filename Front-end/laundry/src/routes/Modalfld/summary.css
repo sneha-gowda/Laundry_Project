@@ -37,7 +37,6 @@
 .summary-footer,
 .view-summary-footer {
   position: absolute;
-  /* bottom: 0; */
   padding: 2%;
   background-color: #00000015;
   text-align: right;

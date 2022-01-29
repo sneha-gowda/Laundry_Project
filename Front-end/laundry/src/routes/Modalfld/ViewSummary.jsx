@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import SummaryTable from "./SummaryTable.jsx";
-
+import Status from "./Status.jsx";
 import "./summary.css"
 const Summary = (props) => {
     const rows = props.orderDetail;
@@ -39,6 +39,7 @@ const Summary = (props) => {
                             <h6>9876543211</h6>
                         </div>
                     </section>
+                    <Status status={"Washed"}></Status>
                     <SummaryTable rows={rows} subTotal={props.subTotal}></SummaryTable>
                     <section className="summary-client-address">
                         <h6>Address</h6>
