@@ -1,0 +1,75 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  font-style: Avenir;
+  height: fit-content;
+  background-color: #b9c0fd1a;
+  width: 100%;
+}
+.right-box {
+  text-align: left;
+  width: 38%;
+  padding-left: 8em;
+  padding-top: 1.5em;
+}
+.right-box h1 {
+  text-align: left;
+  font-family: Avenir;
+  font-size: 2vw;
+  letter-spacing: 2.48px;
+  color: #5861ae;
+  text-transform: capitalize;
+  opacity: 1;
+}
+.button-container {
+  margin-top: 45px;
+}
+.button-container h5 {
+  color: gray;
+}
+.button-container button {
+  border: 2px solid #4552c1;
+  cursor: pointer;
+  height: 50px;
+  width: 150px;
+}
+.login-form {
+  margin: 3em 0 0 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: left;
+  width: fit-content;
+}
+.login-form input[type='text'],
+input[type='password'] {
+  width: 25vw;
+  padding: 1em;
+  margin: 1em 0;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px solid #77838f;
+}
+.login-form span {
+  position: relative;
+  right: 0;
+  font-family: Avenir;
+  letter-spacing: 0.64px;
+  color: #4552c1;
+  text-transform: capitalize;
+  opacity: 1;
+  align-self: end;
+}
+.submit-btn {
+  margin-top: 2em;
+  border-radius: 0.5em;
+  cursor: pointer;
+  border: none;
+  height: 4em;
+  width: 8vw;
+  align-self: center;
+  background-color: #4552c1;
+  color: white;
+}

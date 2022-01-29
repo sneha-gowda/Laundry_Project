@@ -1,0 +1,17 @@
+.cancel-btn {
+  color: #eb1717;
+  border: none;
+  background-color: transparent;
+  font-size: 1em;
+}
+.view-btn {
+  border: none;
+  background-color: transparent;
+  font-size: 1em;
+}
+.View-Summary-model {
+  width: 50%;
+  position: absolute;
+  right: 2px;
+  height: -webkit-fill-available;
+}
