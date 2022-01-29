@@ -37,7 +37,7 @@ const editQuantity = (id,num) => {
 }
 const addService=(id,service) => {
     const index = orderDatail[clothTypes[id]].Service.indexOf(service);
-    console.log(index)
+    
     if(index === -1) {
         orderDatail[clothTypes[id]].Service.push(service);
     }
@@ -67,15 +67,15 @@ const CreateOrder=(props)=> {
         // Deep copying
         orderDatail = JSON.parse(JSON.stringify(orderDetails));
         }
-    console.log("before",orderDatail)
+    
 
     useEffect(() =>{
         if (subTotal !== 0) {
-            // console.log(placedOrderData, "here", subTotal, orderDatail);
+            
             setModelOpen(true);
         }
         else {
-            // console.log(placedOrderData, "here", subTotal, orderDatail);
+            
             alert("Please select Items from table")
         }
     }, [callForModel])
