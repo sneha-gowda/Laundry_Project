@@ -24,14 +24,14 @@ const Login=(props)=>{
                     password: elem.target.password.value,
                 }),
             });
-            console.log(response)
+            
             if (response.status === 200) {
                 const body= await response.json()
                 localStorage.setItem('token', body.token)
                 localStorage.setItem('userName', body.userName)
                 navigate("/orders")
                 props.change()
-                console.log(props)
+                
                 props.setOrd(body.orders)
                 alert("Login Successful")
                 

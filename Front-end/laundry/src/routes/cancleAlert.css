@@ -56,6 +56,7 @@
 .proceed-btn {
   cursor: pointer;
   background: #5861ae 0% 0% no-repeat padding-box;
+  color: white;
   border: 1px solid #5861ae;
   border-radius: 4px;
   opacity: 1;

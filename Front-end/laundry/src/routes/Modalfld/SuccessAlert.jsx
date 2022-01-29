@@ -1,6 +1,6 @@
 import React from 'react';
 import "./successAlert.css";
-import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
+import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined'; // mui icons library
 const SuccessAlert=(props)=>{
   return (
     <>
