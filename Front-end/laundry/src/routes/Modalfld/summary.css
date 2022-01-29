@@ -4,6 +4,7 @@
   padding: 0 0 1em 0;
   background-color: white;
   height: -webkit-fill-available;
+  overflow: scroll;
 }
 .summary-header {
   background-color: #5861ae;
@@ -36,11 +37,12 @@
 .summary-footer,
 .view-summary-footer {
   position: absolute;
-  bottom: 0;
+  /* bottom: 0; */
   padding: 2%;
   background-color: #00000015;
   text-align: right;
   width: 96%;
+  bottom: 0;
 }
 .summary-footer button {
   padding: 1% 3%;

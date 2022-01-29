@@ -30,13 +30,17 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 
 const clothTypes = ["Shirt", "Saree", "Jeans", "Trousers", "Joggers","Suits","Gowns"];
-let orderDatail = orderDetails;
+let orderDatail = JSON.parse(JSON.stringify(orderDetails));
 
 const editQuantity = (id,num) => {
     orderDatail[clothTypes[id]].Quantity=num
 }
 const addService=(id,service) => {
-    orderDatail[clothTypes[id]].Service.push(service);
+    const index = orderDatail[clothTypes[id]].Service.indexOf(service);
+    console.log(index)
+    if(index === -1) {
+        orderDatail[clothTypes[id]].Service.push(service);
+    }
 }
 const removeService = (id,service) =>{
     if(service==="All"){
@@ -58,8 +62,12 @@ const CreateOrder=(props)=> {
     const [callForModel,setCallForModel] = useState("noCall");
     const [sucessAlert,setSucessAlert] = useState(false)
     const clrorderDatail= () => {
-         orderDatail = orderDetails;
+        
+        orderDatail = [];
+        // Deep copying
+        orderDatail = JSON.parse(JSON.stringify(orderDetails));
         }
+    console.log("before",orderDatail)
 
     useEffect(() =>{
         if (subTotal !== 0) {
