@@ -35,7 +35,10 @@ const Order=(props)=>{
                 <div className=" OrderContainer">
                     <section className="OrderHeader">
                         <h2>{orderHeadervariable}</h2>
-                        <input type="search" placeholder="search"/>
+                        <div>
+                            <button style={{ "padding": ".5em 1em", "margin": "0 1em", "color":"#5861AE","border":"1px solid #5861AE"}}>Create</button>
+                            <input type="search" placeholder="search"/>
+                        </div>
                     </section>
                     <div className="tableHolder">
                         {table}

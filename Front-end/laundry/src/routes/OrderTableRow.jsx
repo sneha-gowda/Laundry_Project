@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import  TableRow from '@mui/material/TableRow';
 import "./orderTable.css";
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useState,useEffect } from "react";
 import CancleAlert from "./CancleAlert"
 import Modal from "react-modal";
@@ -86,7 +87,7 @@ const OrderTableRow=(props)=>{
                     <CancleAlert handleCancelNo={handleCancelNo} handleCancelYes={handleCancelYes} orderID={row.OrderId} ORDFullID={props.ORDFullID}></CancleAlert>
                 </Modal>
                 <StyledTableCell align="right">
-                    <button className="view-btn" onClick={() => handleView(row.Cancel)}>View</button>
+                    <button className="view-btn" onClick={() => handleView(row.Cancel)}><VisibilityIcon/></button>
                 </StyledTableCell>
                 <Modal className="View-Summary-model" isOpen={displayViewSummary} onRequestClose={() => { setdisplayViewSummary(false) }}>
                     <ViewSummary statusOfOrd={status} handleCancelYes={() => { setdisplayViewSummary(false); setDisplayCancelAlert(true) }} ORDFullID={props.ORDFullID} subTotal={row.Price-90} orderDetail={props.orderDetail}></ViewSummary>
