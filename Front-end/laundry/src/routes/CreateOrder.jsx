@@ -97,14 +97,14 @@ const CreateOrder=(props)=> {
                 for (let i of orderDatail[key].Service) {
                     let val = 0
                     if (i === "wash") {
-                        val = 30;
+                        val = 20;
                         serv += "Washing ";
                     }
                     else if (i === "iron") {
-                        val = 20;
+                        val = 10;
                         serv += "Ironing "
                     }
-                    else if (i === "fols") {
+                    else if (i === "fold") {
                         val = 10
                         serv += "Folding "
                     }

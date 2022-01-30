@@ -24,6 +24,10 @@ const orderDetails={
     "Gowns": {
         "Quantity": 0,
         "Service": []
+    },
+    "Joggers":{
+        "Quantity": 0,
+        "Service": []
     }
 }
 export default orderDetails;
