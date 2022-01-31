@@ -36,7 +36,7 @@ const Register=(props)=>{
                 navigate("/login")
             }
             else{
-                alert("User with this credentials already exists")
+                alert("User credentials are not valid")
             } 
         } catch (e) {
             console.log(e);
