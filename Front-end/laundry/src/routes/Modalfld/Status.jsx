@@ -35,7 +35,7 @@ export default function Status(props) {
                         ((getStepPosition(transfer.status) + 1) / (steps.length - 1)) -
                         1
                     }
-                    filledBackground="linear-gradient(to right, #5861AE, #5861AE)"
+                    filledBackground="linear-gradient(to right, #5861AE, #f4f9ff)"
                 >
                     {steps.map((step, index, arr) => {
                         return (
