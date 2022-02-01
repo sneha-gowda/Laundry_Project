@@ -1,6 +1,7 @@
 Laundry Service App.
 
 Tech stack used:
+
           Front-end:- ReactJS.
           
           Back-end:- ExpressJS, Node.
